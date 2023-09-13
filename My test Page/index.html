@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
     <title>My test page</title>
+    <link rel="shortcut icon" href="images/duck.jpg" type="image/x-icon" />
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
 
   </head>
   <body>
-    <h1>Mozilla is cool</h1>
+    <h1 id="Mozilla_address">Mozilla is cool</h1>
 
     <img src="images/firefox-icon.png" alt="My test image" />
 
@@ -22,7 +24,25 @@
     <p>working together ...</p>
 
     <p>Read the <a href="http://www.mozilla.org/zh-TW/about/manifesto/">Mozilla Manifesto</a>
-    to learn even more about the values</p>
+    to <strong>learn</strong> even more about the values</p>
+
+    <p>
+       <a href="http://www.google.com" title="Isn&#39;t this fun?">A link to my example. </a> 
+    </p>
+
+    <p> Want <a href="#Mozilla_address"> Go to title </a></p>
+    <p>
+      The menu was a sea of exotic words like <i lang="uk-latn">vatrushka</i>,
+      <i lang="id">nasi goreng</i> and <i lang="fr">soupe à l'oignon</i>.
+    </p>
+    
+    <p>
+      Someday I'll learn how to
+      <u style="text-decoration-line: underline; text-decoration-style: wavy;"
+        >spel</u
+      >
+      better.
+    </p>
 
     <button>Change user</button>
     <script src="scripts/main.js"></script>
