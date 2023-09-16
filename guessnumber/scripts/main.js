@@ -1,5 +1,6 @@
 let target = Math.floor(Math.random()*100) + 1;
 
+const time = document.querySelector(".time");
 const guesses = document.querySelector(".guesses");
 const lastResult = document.querySelector(".lastResult");
 const lowOrHi = document.querySelector(".lowOrHi");
@@ -24,8 +25,8 @@ function checkGuess(){
         lowOrHi.textContent = "";
         setGameOver();
     }
-    else if(guessCount === 5){
-        lastResult.textContent = "!!!GAME OVER!!!";
+    else if(guessCount === 10){
+        lastResult.textContent = "GAME OVER!!!";
         setGameOver();
     }
     else {
@@ -39,6 +40,8 @@ function checkGuess(){
             lowOrHi.textContent = "Last guess was too high!";
         }
     }
+
+    time.textContent = "You have " + Number(10-guessCount) + " time chance."
     guessCount++;
     guessField.value = "";
     guessField.focus();
