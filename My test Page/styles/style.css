@@ -25,13 +25,46 @@ h1 {
 /*
     text-shadow : horizontal, vertical, blur radius;
 */
-  
-p,
-li {
+ 
+p {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+    background-image: url("images/dinosaur.jpg");
+}
+
+span.test {
+    border:1px solid black;
+    background-color:lime;
+    
+    color:black;
+    color: red;
+    color:#090;
+    color: rgba(25 25 25 / 50%);
+    font-weight: bold;
+    font-size:1.2rem;
+    font-style: italic;
+    font-family: Times, "Times New Roman", Georgia, serif;
+}
+
+span.highlight {
+    background-color: yellow;
+}
+
+li[class] {
     font-size: 16px;
     line-height: 2;
     letter-spacing: 1px;
 }
+
+li[class="a"] {
+    background-color: yellow;
+}
+
+li[class~="a"] {
+    color: red;
+}
+
 
 img {
     display: block;

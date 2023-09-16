@@ -18,6 +18,7 @@ myImage.onclick = function () {
   }
 };
 
+/*
 var myButton = document.querySelector("button");
 var myHeading = document.querySelector("h1");
 
@@ -38,3 +39,13 @@ else {
 myButton.onclick = function () {
     setUserName();
 };  
+*/
+
+let player = document.querySelector("p.player");
+
+player.addEventListener("click", updataname)
+
+function updataname(){
+  let name = prompt("輸入新的名字"); 
+  player.textContent = "Player 1: " + name;
+}

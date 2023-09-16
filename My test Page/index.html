@@ -6,19 +6,22 @@
     <title>My test page</title>
     <link rel="shortcut icon" href="images/duck.jpg" type="image/x-icon" />
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
-
+    <script src="scripts/main.js" async></script>
   </head>
   <body>
     <h1 id="Mozilla_address">Mozilla is cool</h1>
 
-    <img src="images/firefox-icon.png" alt="My test image" />
+    <p class="player"> Player 1 : User</p> 
 
-    <p>At Mozilla, we’re a global community of</p>
+    <img src="images/firefox-icon.png" alt="My test image" width="256" height="256" title="firefox"/>
+
+
+    <p>At Mozilla, we’re a <span class="highlight" >global community</span> of</p>
 
     <ul>
-      <li>technologists</li>
-      <li>thinkers</li>
-      <li>builders</li>
+      <li class="a">technologists</li>
+      <li class="a b">thinkers</li>
+      <li class="ab">builders</li>
     </ul>
 
     <p>working together ...</p>
@@ -38,13 +41,21 @@
     
     <p>
       Someday I'll learn how to
-      <u style="text-decoration-line: underline; text-decoration-style: wavy;"
+      <u style="text-decoration: green wavy underline;"
         >spel</u
       >
       better.
     </p>
 
+    <p>
+      Let's use:
+      <span class="test"> Cascoding </span>
+      <span class="test"> Style </span>
+      <span class="test"> Sheets </span>
+    </p>
+
     <button>Change user</button>
-    <script src="scripts/main.js"></script>
+    
+
   </body>
 </html>
