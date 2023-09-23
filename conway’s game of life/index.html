@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Conway’s Game</title>
+        <link rel="stylesheet" href="styles.css"> 
+        <script src="main.js" defer></script>
+    </head>
+
+    <body>
+
+        <h1 >Conway’s Game of life example</h1>
+        <p>
+            生命遊戲中，對於任意細胞，規則如下：
+        </p>
+        <ul>
+            <li>
+                每個細胞有兩種狀態 - 存活或死亡，每個細胞與以自身為中心的周圍八格細胞產生互動
+            </li>
+            <li>
+                當前細胞為存活狀態時：
+            </li>
+            <ul>
+                <li>
+                    當周圍的存活細胞低於2個時（不包含2個），該細胞變成死亡狀態。（模擬生命數量稀少）
+    
+                </li>
+                <li>
+                    當周圍有2個或3個存活細胞時，該細胞保持原樣。
+                </li>
+                <li>
+                    當周圍有超過3個存活細胞時，該細胞變成死亡狀態。（模擬生命數量過多）
+                </li>
+            </ul>
+            <li>
+                當前細胞為死亡狀態時：
+            </li>
+            <ul>
+                <li>
+                    當周圍有3個存活細胞時，該細胞變成存活狀態。（模擬繁殖）
+                </li>
+            </ul>
+        </ul>
+
+        <p>
+            <input id="Number" type="number" min="10" max="100" required/>
+            <button id="Genbutton">Generation life Size</button>
+        </p>
+        <!-- <canvas id="canvas" width="300" height="300"></canvas> -->
+        <div id="gridContainer"> </div>
+
+        <div id="ButtonContainer" hidden>
+            <button id="start">Start</button>
+            <button id="clear">Clear</button>
+            <button id="Random">Random</button>
+        </div>
+
+
+        <p>
+            參考資料：
+        </p>
+        <ul>
+            <li>
+                <a href="https://zh.wikipedia.org/zh-tw/%E5%BA%B7%E5%A8%81%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F">維基百科</a>
+            </li>
+            <li>
+                <a href="https://codepen.io/RBSpatz/pen/rLyNLb">codepen</a>
+            </li> 
+            <li>
+                <a href="https://www.geeksforgeeks.org/conways-game-life-python-implementation/">geeksforgeeks</a>
+            </li> 
+        </ul>
+        
+    </body>
+
+</html>

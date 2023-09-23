@@ -11,8 +11,14 @@ const guessField = document.querySelector(".guessField");
 let guessCount = 1;
 let resetButton;
 
+const min = 0, max = 100;
+
+
 function checkGuess(){
     var userGuess = Number(guessField.value);
+
+    if(userGuess <= min || userGuess > max)
+        return;
 
     if (guessCount === 1) {
         guesses.textContent = "Previous guesses: ";
@@ -41,7 +47,7 @@ function checkGuess(){
         }
     }
 
-    time.textContent = "You have " + Number(10-guessCount) + " time chance."
+    time.textContent = `You have ${10-guessCount} time chance.`
     guessCount++;
     guessField.value = "";
     guessField.focus();
