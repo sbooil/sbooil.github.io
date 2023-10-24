@@ -1,0 +1,34 @@
+body {
+    padding: 20px;
+    background-color: #f2f4bf; 
+}
+
+#gridContainer {
+    padding-bottom: 10px;
+}
+
+table {
+    background-color: #C5D6C6;
+    border-spacing: 0;
+}
+
+td {
+    border: 1px solid #F1F5DA;
+    border-radius: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+td.empty {
+    background-color: transparent;
+}
+
+td.black {
+    background-color: #000000;
+    border-radius: 15px;
+}
+
+td.white {
+    background-color: #ffffff;
+    border-radius: 15px;
+}

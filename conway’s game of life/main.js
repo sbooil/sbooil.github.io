@@ -4,6 +4,7 @@ var grid = [];
 var newgrid = [];
 var playing = true;
 var Size = 0;
+var Complete = true;
 var timer;
 
 function GenSingalLight(){
@@ -24,11 +25,8 @@ function GenSingalLight(){
 function GenLift(N, array){
     for(var i=0;i<N;i++){
         array.push([])
-        for(var j=0;j<N;j++){
-            //if(Math.random() < lifeP)   array[i].push(1);
-            //else                        array[i].push(0);
+        for(var j=0;j<N;j++)
             array[i].push(0);
-        }
     }
     return array
 }
@@ -72,6 +70,8 @@ function CheckLife(N, cell ,newcell){
             else {
                 if (check == 3)             newcell[i][j] = 1; 
             }
+            if(cell[i][j] != newcell[i][j])
+                Complete = false;
         }
     }
     copyMap(N, cell, newcell) 
@@ -174,6 +174,15 @@ function RandomButtonHandler(){
 function runlife(){
     CheckLife(Size, grid, newgrid);
     boardupdata(Size, grid);
+    if(Complete){
+        if(timer)   
+            clearInterval(timer);
+        alert("lift end");
+        playing = true;
+        Start.innerHTML = "Start";
+    }
+    Complete = true;
+        
 }
 
 var Genbutton = document.getElementById('Genbutton');
