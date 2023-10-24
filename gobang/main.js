@@ -133,7 +133,7 @@ function inverse_slope(board, Size, Location) {	//檢查函數y=-x的影象所�
 function slope(board, Size, Location) {	//檢查函數y=x的影象所在直線方向上是否連成五子
 	var xrange = boundary_range(Size, Location[1])
     var yrange = [Location[0] + (Location[1] - xrange[0]), Location[0] + (Location[1] - xrange[1])]
-    console.log(xrange, yrange)
+
     if(yrange[1] < 0){
         xrange[1] += yrange[1]
         yrange[1] = 0
@@ -142,7 +142,7 @@ function slope(board, Size, Location) {	//檢查函數y=x的影象所在直線�
         xrange[0] += yrange[0] - Size + 1
         yrange[0] = Size - 1
     }
-    console.log(xrange, yrange)
+
     var connect = 0;
 	for (var i = yrange[0], j = xrange[0]; j <= xrange[1]; i--, j++) {
 		if (board[i][j] == player) {
