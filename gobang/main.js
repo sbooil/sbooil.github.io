@@ -4,10 +4,13 @@ var player = 1;
 var direction = [0, 0]
 var GameOver = false
 
-function Genboard(N, array){
-    for(var i=0;i<N;i++){
+var step = []
+
+function Genboard(rows, cols, array){
+    array = []
+    for(var i=0;i<rows;i++){
         array.push([])
-        for(var j=0;j<N;j++)
+        for(var j=0;j<cols;j++)
             array[i].push(0);
     }
     return array
@@ -27,7 +30,9 @@ function createTable(rows, cols) {
     var gridContainer = document.getElementById('gridContainer');
     var table = document.querySelector("table");
     
-    if(table) table.remove();
+    if(table) {
+        table.remove();
+    }
     table = document.createElement("table");
     
     for (var i = 0; i < rows; i++) {
@@ -42,6 +47,7 @@ function createTable(rows, cols) {
         table.appendChild(tr);
     }
     gridContainer.appendChild(table);
+    ClearButtonHandler();
 }
 
 function cellClickHandler() {
@@ -52,7 +58,8 @@ function cellClickHandler() {
         if(classes === "empty") {
             direction[0] = Number(pos[0])
             direction[1] = Number(pos[1])
-            grid[pos[0]][pos[1]] = player;        
+            step.push(direction)
+            grid[direction[0]][direction[1]] = player;        
             if(player == 1) this.setAttribute("class", "black");
             else            this.setAttribute("class", "white");
             GameOver = checkall(grid, boardSize, direction)
@@ -69,11 +76,17 @@ function cellClickHandler() {
 
 function boundary_range(Size, Location){
     if((Location + 4) >= Size)
-        return [Location - 4, Size - 1]
+        range = [Location - 4, Size - 1]
     else if((Location - 4) <= 0)
-        return [0, Location + 4]
-    return [Location - 4, Location + 4]
+        range = [0, Location + 4]
+    else range = [Location - 4, Location + 4]
+
+    if(range[0] <= 0)    range[0] = 0
+    if(range[1] >= Size) rnage[1] = Size - 1
+
+    return range
 }
+
 
 function hor(board, Size, Location) {
     var range = boundary_range(Size, Location[1])
@@ -108,21 +121,21 @@ function ver(board, Size, Location) {	//檢查y軸方向上是否連成五子
 function inverse_slope(board, Size, Location) {	//檢查函數y=-x的影象所在直線方向上是否連成五子
     var xrange = boundary_range(Size, Location[1])
     var yrange = [Location[0] - (Location[1] - xrange[0]), Location[0] - (Location[1] - xrange[1])]
-
+ 
     if(yrange[0] < 0){
         xrange[0] -= yrange[0]
         yrange[0] = 0
     }
-    else if(yrange[1] > Size){
-        xrange[1] -= yrange[1] - Size
-        yrange[1] = Size 
+    else if(yrange[1] >= Size){
+        xrange[1] -= yrange[1] - Size + 1
+        yrange[1] = Size - 1
     }
 
     var connect = 0;
-	for (var i = yrange[0], j = xrange[0]; i < yrange[1]; i++, j++) {
-		if (board[i][j] === player) {
+	for (var i = yrange[0], j = xrange[0]; i <= yrange[1]; i++, j++) {
+		if (board[i][j] == player) {
 			connect++;
-			if (connect === 5) break;
+			if (connect == 5) break;
 		}
 		else    connect = 0;
 	}
@@ -147,7 +160,7 @@ function slope(board, Size, Location) {	//檢查函數y=x的影象所在直線�
 	for (var i = yrange[0], j = xrange[0]; j <= xrange[1]; i--, j++) {
 		if (board[i][j] == player) {
 			connect++;
-			if (connect === 5) break;
+			if (connect == 5) break;
 		}
 		else    connect = 0;
 	}
@@ -168,8 +181,8 @@ function checkall(board, Size, Location){
 
 function GenButtonHandler(){
     boardSize = Number((document.getElementById("Number")).value);
-    if(boardSize <=3)    boardSize = 3;
-    grid = Genboard(boardSize,grid);
+    if(boardSize < 5)    return;
+    grid = Genboard(boardSize, boardSize, grid);
     createTable(boardSize, boardSize);
     document.getElementById('ButtonContainer').hidden = false;
 }
@@ -177,10 +190,21 @@ function GenButtonHandler(){
 function ClearButtonHandler(){
     clearMap(boardSize, grid);
     player = 1;
-
     var par = document.getElementById("message")
     par.innerHTML = ""
     GameOver = false;
+}
+
+function PreviousButtonHandler(){
+    if(GameOver)
+        return;
+    if(step.length == 0)
+        return;
+    dir = step.pop()
+    grid[dir[0]][dir[1]] = 0;
+    var cell = document.getElementById(dir[0] + "_" + dir[1])
+    cell.setAttribute("class","empty");
+    player = -player;
 }
 
 
@@ -189,3 +213,6 @@ Genbutton.onclick = GenButtonHandler;
 
 var Clear = document.getElementById('Restart');
 Clear.onclick = ClearButtonHandler;
+
+var Previous = document.getElementById('Previous');
+Previous.onclick = PreviousButtonHandler;
