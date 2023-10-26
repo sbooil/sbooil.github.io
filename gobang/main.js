@@ -56,9 +56,9 @@ function cellClickHandler() {
 
     if(GameOver == false){
         if(classes === "empty") {
-            direction[0] = Number(pos[0])
-            direction[1] = Number(pos[1])
+            direction = [Number(pos[0]), Number(pos[1])]
             step.push(direction)
+            console.log(step)
             grid[direction[0]][direction[1]] = player;        
             if(player == 1) this.setAttribute("class", "black");
             else            this.setAttribute("class", "white");
@@ -180,8 +180,9 @@ function checkall(board, Size, Location){
 }
 
 function GenButtonHandler(){
-    boardSize = Number((document.getElementById("Number")).value);
-    if(boardSize < 5)    return;
+    var Size = Number((document.getElementById("Number")).value);
+    if(Size < 5)    return;
+    boardSize = Size
     grid = Genboard(boardSize, boardSize, grid);
     createTable(boardSize, boardSize);
     document.getElementById('ButtonContainer').hidden = false;
@@ -189,6 +190,7 @@ function GenButtonHandler(){
 
 function ClearButtonHandler(){
     clearMap(boardSize, grid);
+    step = []
     player = 1;
     var par = document.getElementById("message")
     par.innerHTML = ""
@@ -196,11 +198,12 @@ function ClearButtonHandler(){
 }
 
 function PreviousButtonHandler(){
-    if(GameOver)
+    if(GameOver == true)
         return;
     if(step.length == 0)
         return;
     dir = step.pop()
+    console.log(step)
     grid[dir[0]][dir[1]] = 0;
     var cell = document.getElementById(dir[0] + "_" + dir[1])
     cell.setAttribute("class","empty");
